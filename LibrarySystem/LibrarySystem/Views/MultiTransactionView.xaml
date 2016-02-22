@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="LibrarySystem.MultiTransactionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LibrarySystem"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="400">
+    <UserControl.Resources>
+        <ResourceDictionary Source="SharedResources.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <DockPanel>
+            <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+                <ContentControl Content="{Binding Path=Commands}" ContentTemplate="{StaticResource HorizontalCommandsTemplate}"/>
+            </WrapPanel>
+            <local:PagingView DockPanel.Dock="Bottom" HorizontalAlignment="Right"/>
+            <ListView ItemsSource="{Binding Path=SortedTransactions}" ItemContainerStyle="{StaticResource ResourceKey=MultiEntityListViewStyle}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Member}">
+                            <GridViewColumnHeader Content="Member" Command ="{Binding Path=SortCommand}" CommandParameter="Member"/>
+                        </GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=CheckOutDate}">
+                            <GridViewColumnHeader Content="Checked Out" Command ="{Binding Path=SortCommand}" CommandParameter="CheckOutDate"/>
+                        </GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=DueDate}">
+                            <GridViewColumnHeader Content="Due" Command ="{Binding Path=SortCommand}" CommandParameter="DueDate"/>
+                        </GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=NumberOfCopies}">
+                            <GridViewColumnHeader Content="# of items" Command ="{Binding Path=SortCommand}" CommandParameter="NumberOfCopies"/>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <local:MultiTransactionDetailView DataContext="{Binding Path=DetailViewModel}" DockPanel.Dock="Left" VerticalAlignment="Top" Visibility="{Binding Path=IsPreviewModeOn}" />
+        </DockPanel>
+    </Grid>
+</UserControl>

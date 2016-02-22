@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="OverDueDataSet" targetNamespace="http://tempuri.org/OverDueDataSet.xsd" xmlns:mstns="http://tempuri.org/OverDueDataSet.xsd" xmlns="http://tempuri.org/OverDueDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="_0495_392_TeamOrangeConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="_0495_392_TeamOrangeConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Reports.Properties.Settings.GlobalReference.Default._0495_392_TeamOrangeConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Over_Due_BooksTableAdapter" GeneratorDataComponentClassName="Over_Due_BooksTableAdapter" Name="Over_Due_Books" UserDataComponentName="Over_Due_BooksTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="_0495_392_TeamOrangeConnectionString (Settings)" DbObjectName="[0495_392_TeamOrange].dbo.Over_Due_Books" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Title, DueDate FROM dbo.Over_Due_Books</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Title" DataSetColumn="Title" />
+              <Mapping SourceColumn="DueDate" DataSetColumn="DueDate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="OverDueDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="OverDueDataSet" msprop:Generator_UserDSName="OverDueDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Over_Due_Books" msprop:Generator_TableClassName="Over_Due_BooksDataTable" msprop:Generator_TableVarName="tableOver_Due_Books" msprop:Generator_TablePropName="Over_Due_Books" msprop:Generator_RowDeletingName="Over_Due_BooksRowDeleting" msprop:Generator_RowChangingName="Over_Due_BooksRowChanging" msprop:Generator_RowEvHandlerName="Over_Due_BooksRowChangeEventHandler" msprop:Generator_RowDeletedName="Over_Due_BooksRowDeleted" msprop:Generator_UserTableName="Over_Due_Books" msprop:Generator_RowChangedName="Over_Due_BooksRowChanged" msprop:Generator_RowEvArgName="Over_Due_BooksRowChangeEvent" msprop:Generator_RowClassName="Over_Due_BooksRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DueDate" msprop:Generator_ColumnVarNameInTable="columnDueDate" msprop:Generator_ColumnPropNameInRow="DueDate" msprop:Generator_ColumnPropNameInTable="DueDateColumn" msprop:Generator_UserColumnName="DueDate" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

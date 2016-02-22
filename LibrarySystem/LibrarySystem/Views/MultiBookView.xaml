@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="LibrarySystem.MultiBookView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LibrarySystem"
+             xmlns:ap="clr-namespace:LibrarySystem.AttachedProperties"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="620">
+    <UserControl.Resources>
+        <ResourceDictionary Source="SharedResources.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <DockPanel>
+            <!--<Grid DockPanel.Dock="Bottom">-->
+            <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center">
+                <ContentControl Content="{Binding Path=Commands}" ContentTemplate="{StaticResource HorizontalCommandsTemplate}"/>
+            </WrapPanel>
+            <local:PagingView DockPanel.Dock ="Bottom" HorizontalAlignment="Center"/>
+            <!--</Grid>-->
+            <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Style="{StaticResource ResourceKey=FilterComboBoxStyle}" ItemsSource="{Binding AllFormats}" SelectedItem="{Binding Format}"/>
+                    <ComboBox Style="{StaticResource ResourceKey=FilterComboBoxStyle}" ItemsSource="{Binding AllGenres}" SelectedItem="{Binding Genre}"/>
+                    <Button Content="Apply Filter" Style="{StaticResource ResourceKey=FilterButtonStyle}" Command="{Binding Path=FilterCommand}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Style="{StaticResource ResourceKey=SearchTextBoxStyle}" ap:TextBoxBehavior.SelectAllTextOnFocus="true" Text="{Binding Path=UserText, TargetNullValue='Enter Search Text Here'}"/>
+                    <Button Content="Search" Style="{StaticResource ResourceKey=SearchButtonStyle}" Command="{Binding Path=SearchCommand}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Clear All" Style="{StaticResource ResourceKey=ClearButtonStyle}" Command="{Binding Path=ClearCommand}"/>
+                </StackPanel>
+            </WrapPanel>
+            <ListView ItemsSource="{Binding Path=SortedBooks}" ItemContainerStyle="{StaticResource ResourceKey=MultiEntityListViewStyle}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Title}">
+                            <GridViewColumnHeader Content="Title" Command ="{Binding Path=SortCommand}" CommandParameter="Title"/>
+                        </GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Author}">
+                            <GridViewColumnHeader Content="Author" Command ="{Binding Path=SortCommand}" CommandParameter="Author"/>
+                        </GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Genre}">
+                            <GridViewColumnHeader Content="Genre" Command ="{Binding Path=SortCommand}" CommandParameter="Genre"/>
+                        </GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Isbn}">
+                            <GridViewColumnHeader Content="ISBN" Command ="{Binding Path=SortCommand}" CommandParameter="Isbn"/>
+                        </GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=NumberOfCopies}">
+                            <GridViewColumnHeader Content="Copies" Command ="{Binding Path=SortCommand}" CommandParameter="NumberOfCopies"/>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <local:MultiBookCopyView DataContext="{Binding Path=BookCopyViewModel}" DockPanel.Dock="Left" VerticalAlignment="Top" Visibility="{Binding Path=IsPreviewModeOn}" />
+        </DockPanel>
+    </Grid>
+</UserControl>
